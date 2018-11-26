@@ -4,18 +4,18 @@
     <h1 class="text-center">{{title}}</h1>
     <form v-if="!isSubmitted" @submit.prevent="submit" novalidate>
       <div class="form-group">
-        <label for="secret">{{ $t('form.secret') }}</label>
+        <label for="secretText">{{ $t('form.secretText') }}</label>
         <textarea 
-          type="secret" 
+          type="secretText" 
           class="form-control" 
-          id="secret" 
-          v-model.trim="form.secret" 
-          v-bind:class="getFieldClasses('secret')" 
-          v-bind:maxlength="$v.form['secret'].$params.maxLength.max" 
-          @blur="onFieldBlur('secret')">
+          id="secretText" 
+          v-model.trim="form.secretText" 
+          v-bind:class="getFieldClasses('secretText')" 
+          v-bind:maxlength="$v.form['secretText'].$params.maxLength.max" 
+          @blur="onFieldBlur('secretText')">
         </textarea>
-        <small class="text-muted form-text">{{ $tc('form.charactersLeft', getCharactersLeft('secret'), { charCount: getCharactersLeft('secret') }) }}</small>
-        <div v-if="isErrorField('secret')" class="invalid-feedback">{{ $t('error.fieldMaxLength', { field: $t('form.secret') }) }}</div>
+        <small class="text-muted form-text">{{ $tc('form.charactersLeft', getCharactersLeft('secretText'), { charCount: getCharactersLeft('secretText') }) }}</small>
+        <div v-if="isErrorField('secretText')" class="invalid-feedback">{{ $t('error.fieldMaxLength', { field: $t('form.secretText') }) }}</div>
       </div>
       <div class="form-group">
         <label for="expireAfterViews">{{ $t('form.expireAfterViews') }} *</label>
@@ -53,7 +53,7 @@
       <div class="alert alert-info">
         <p><strong>{{ $t('form.sentInfo' ) }}</strong></p>
         <pre>
-            {{form}}
+            {{ result }}
         </pre>
       </div>
 
@@ -63,7 +63,7 @@
                     <div>
                         <h6 class="my-0">Your secret here</h6>
                         <small class="text-muted">
-                          <router-link :to="linkToSecret" class="btn btn-secondary">«{{ $t('form.linkToSecret' ) }}</router-link>
+                          <router-link :to="linkToSecret" class="btn btn-secondary">{{ result.hash }}</router-link>
                         </small>
                     </div>
                 </li>

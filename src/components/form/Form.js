@@ -14,9 +14,16 @@ export default {
       submitting: false,
       linkToSecret: null,
       form: {
-        secret: '',
+        secretText: '',
         expireAfterViews: 1,
         expireAfter: 0
+      },
+      result: {
+        hash: null,
+        secretText: null,
+        expireAfter: null,
+        expireAfterViews: null,
+        cretedAt: null
       }
     }
   },
@@ -46,16 +53,22 @@ export default {
       });
     },
     submitSuccess(response) {
-      if (response.data.success) {
+      if (response.status === 201) {
         this.isSubmitted = true;
         this.isError = false;
+        this.linkToSecret = `/${response.data.hash}/`;
+        this.result.hash = response.data.hash;
+        this.result.secretText = response.data.secretText;
+        this.result.expireAfter = response.data.expireAfter;
+        this.result.expireAfterViews = response.data.expireAfterViews;
+        this.result.createdAt = response.data.createdAt;
       } else {
         this.errorHeader = 'error.invalidFields';
         this.errors = response.data.errors;
         this.isError = true;
       }
     },
-    submitError(error) {
+    submitError(_error) {
       this.errorHeader = 'error.general';
       this.errors = [{ 'field': null, 'message': 'error.generalMessage' }];
       this.isError = true;
@@ -119,7 +132,7 @@ export default {
   },
   validations: {
     form: {
-      secret: { required, maxLength: maxLength(1024) },
+      secretText: { required, maxLength: maxLength(1024) },
       expireAfterViews: { required },
       expireAfter: { required }
     }
