@@ -23,7 +23,6 @@ export default {
         secretText: null,
         expireAfter: null,
         expireAfterViews: null,
-        cretedAt: null
       }
     }
   },

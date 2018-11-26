@@ -5,8 +5,8 @@ import Vuelidate from 'vuelidate'
 import App from './App.vue'
 import Form from './components/form/Form.vue'
 import Result from './components/result/Result.vue'
-import page404NotFound from './components/errorPages/page404NotFound.vue'
-import page500ServerError from './components/errorPages/page500ServerError.vue'
+import page404NotFound from './components/errorPages/page404NotFound/page404NotFound.vue'
+import page500ServerError from './components/errorPages/page500ServerError/page500ServerError.vue'
 import translations from "./resources/translations"
 
 Vue.use(VueI18n)
@@ -24,7 +24,7 @@ const i18n = new VueI18n({
 const routes = [
   { path: '/', component: Form, name: 'Form' },
   { path: '/not-found', component: page404NotFound, name: 'NotFound' },
-  { path: '/server-error', component: page404NotFound, name: 'ServerError' },
+  { path: '/server-error', component: page500ServerError, name: 'ServerError' },
   { path: '/:hash', component: Result, name: 'Result' },
 ]
 
