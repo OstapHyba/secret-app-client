@@ -1,4 +1,4 @@
-import { required, maxLength } from 'vuelidate/lib/validators';
+import { required, maxLength, minValue, maxValue } from 'vuelidate/lib/validators';
 import axios from 'axios';
 import Vue from 'vue';
 
@@ -132,8 +132,16 @@ export default {
   validations: {
     form: {
       secretText: { required, maxLength: maxLength(1024) },
-      expireAfterViews: { required },
-      expireAfter: { required }
+      expireAfterViews: {
+        required,
+        minValue: minValue(1),
+        maxValue: maxValue(4294967294)
+      },
+      expireAfter: {
+        required,
+        minValue: minValue(0),
+        maxValue: maxValue(4294967294)
+      }
     }
   },
   watch: {
