@@ -23,8 +23,8 @@ const i18n = new VueI18n({
 
 const routes = [
   { path: '/', component: Form, name: 'Form' },
-  { path: '/404', component: page404NotFound, name: 'NotFound' },
-  { path: '/500', component: page500ServerError, name: 'ServerError' },
+  { path: '/not-found', component: page404NotFound, name: 'NotFound' },
+  { path: '/server-error', component: page404NotFound, name: 'ServerError' },
   { path: '/:hash', component: Result, name: 'Result' },
 ]
 

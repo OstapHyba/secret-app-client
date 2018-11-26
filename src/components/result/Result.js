@@ -27,9 +27,9 @@ export default {
                 this.submitSuccess(response);
             }).catch(error => {
                 if (error.response.status === 404)
-                    this.goTo(404)
+                    this.goTo('not-found')
                 if (error.response.status === 500)
-                    this.goTo(500)
+                    this.goTo('server-error')
             });
         },
         submitSuccess(response) {
